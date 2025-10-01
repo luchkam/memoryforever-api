@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: memoryforever-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: TOCHKA_WEBHOOK_TOKEN
+        sync: false
+      - key: TOCHKA_CLIENT_ID
+        sync: false
+      - key: TOCHKA_CLIENT_SECRET
+        sync: false
+      - key: TOCHKA_LEGAL_ID
+        sync: false
+      - key: TOCHKA_SBP_MERCHANT_ID
+        sync: false
+      - key: TOCHKA_TERMINAL_ID
+        sync: false
+      - key: TOCHKA_API_BASE
+        value: https://enter.tochka.com/uapi
+      - key: TOCHKA_API_VERSION
+        value: v1
